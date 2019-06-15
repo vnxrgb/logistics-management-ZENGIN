@@ -1,0 +1,34 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  background: $gray;
+  line-height: 1em;
+
+
+}
+
+#wrapper {
+  background: $white;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+// Fixes overlapping issues
+// Makes the rendered box elements padding, borders, etc.
+// fit into the width
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+article p a {
+  color: $blue;
+  &:hover, &:focus {
+    color: $duke-blue;
+  }
+  &:visited {
+    color: $blue-gray;
+  }
+}

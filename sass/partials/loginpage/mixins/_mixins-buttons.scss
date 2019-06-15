@@ -1,0 +1,105 @@
+//Simple Flat Button type 1
+
+@mixin flat-button-1($bg,$type,$height,$width) {
+  text-decoration:none;
+
+  letter-spacing: 1px;
+  font-size:14px;
+  padding: $height 17px;
+  font-weight: 700;
+  color:white;
+  text-align: center;
+  width:$width;
+  border-radius: 1px;
+  text-transform: uppercase;
+    @include  transition(all,0.8s,ease);
+  letter-spacing: 2px;
+  @if $type == 'transperent-bg' {
+    @if $transperent-bg-mode == 'm1'{//background colored
+      color: #fff;
+      background: $bg;
+      transition: all 0.5s ease;
+      border: 1px solid  $bg;
+      &:hover {
+
+        color: darken($bg,4%);
+        background: transparent;
+        border: 1px solid  darken($bg,4%);
+      }
+      &:active {
+
+        color: darken($bg,4%);
+        background: transparent;
+        border: 1px solid  darken($bg,4%);
+      }
+    }
+    @if $transperent-bg-mode == 'm2'{//center blank
+      color: darken($bg,4%);
+      background: transparent;
+            letter-spacing: 1px;
+      border: 1px solid  darken($bg,4%);
+      &:hover {
+        color: #fff;
+        background: $bg;
+        &:active {
+          color: #fff;
+          background: $bg;
+          transition: all 0.5s ease;
+        }
+      }
+    }
+    @if $transperent-bg-mode == 'm3'{//background animation
+      color: darken($bg,4%);
+      background: #FFF;
+      border: 1px solid darken($bg,4%);
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 2px;
+      box-shadow: inset 0 0 0 0 darken($bg,4%);
+      &:hover {
+        box-shadow: inset 0 100px 0 0 darken($bg,4%);
+        color: #FFF;
+      }
+    }
+
+  }
+  @if $type == 'flat' {
+    color:#fff;
+    background: darken($bg,4%);
+    border: 1px solid  $bg;
+    &:hover {
+      background:$bg;
+    }
+  }
+  @if $type == 'sexy-flat-button'{
+    border-style: solid;
+    border-width: 0px 0px 3px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    border-color: darken($bg,5%);
+    background-color: $bg;
+    border-radius: 2px;
+    &:hover{
+      background-color: darken($bg,3%);
+      border-color: darken($bg,5%);
+    }
+  }
+
+
+}
+/*      usage
+div{
+@include flat-button(#000,#fff,10px);
+}
+*/
+
+
+//Simple Flat Button type 2
+
+/*      usage
+
+*/
+//
+
+/*      usage
+
+*/

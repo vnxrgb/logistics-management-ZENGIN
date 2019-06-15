@@ -1,0 +1,203 @@
+
+$nav-background:#b9baba;
+$help-font-color:#808080;
+$input-background:lighten($nav-background,10%);
+
+$default-font:'RalewayRegular',sans-serif;
+nav {
+  z-index: 11;
+  margin: 0px;
+}
+.company-info-container{
+  padding: 0;
+  margin: 0;
+  position: relative;
+  margin: 0px auto;
+  width: 80%;
+  height: 100px;
+  //background: red;
+  padding-top: 10px;
+  margin-bottom: 10px;
+
+}
+.company-logo{
+  background-image: url('../images/VLPL logo.png');
+  position: relative;
+  //background-color: green;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 300px;
+  height: 80px;
+}
+.help-menu{
+  position: relative;
+  float: right;
+  width: 65%;
+  height: 80px;
+  padding-top: 17px;
+  padding-right: 20px;
+  //background-color: blue;
+  div{
+    text-transform: uppercase;
+    font-family: $default-font;
+    font-size: 13px;
+    color:  #fff;
+    float: right;
+    color: $help-font-color;
+    span:hover{
+      cursor: pointer!important;
+      color: darken($help-font-color, 25%);
+    }
+  }
+}
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  z-index: 11;
+  margin: 0px auto;
+  width: 80%;
+
+}
+
+nav ul li {
+  position: relative;
+  display: inline-block;
+  background-color: $nav-background;
+  width: 13%;
+  text-align: center;
+  padding-top:7px;
+  padding-bottom:7px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+nav a {
+  display: block;
+  color: #FFF;
+  font-size: 13px;
+  font-family: $default-font;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav li:hover {
+  background-color: #999999;
+}
+
+/* Hide Dropdowns by Default */
+nav ul ul {
+  display: none;
+  position: absolute;
+  margin: 0px;
+  left: 0px;
+  top: 25px; /* the height of the main nav */
+  width: 200px;
+  height:270px;
+  background-color: #999999;
+  padding-top: 10px;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+  display: inherit;
+}
+
+/* Fisrt Tier Dropdown */
+nav ul ul li {
+  font-family: $default-font;
+  background-color: #999999;
+  width: 110px;
+  height: auto;
+  float: left;
+  text-align: left;
+  display: list-item;
+  position: relative;
+  border-bottom: 1px solid #fff;
+  margin-left: 20px;
+  padding: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  span{
+    color: #fff;
+    font-size: 12px;
+    padding: 0px;
+
+  }
+  span:hover{
+    color:$nav-active-background;
+    cursor: pointer;
+  }
+  h4{
+    padding: 0px;
+    padding-top: 5px;
+    margin:  0px;
+  }
+  h4 a{
+    position: relative;
+    line-height: 7px;
+    padding: 0px;
+    margin: 0px;
+    color: lighten(#bababa,10%);
+    font-size: 8px;
+  }
+}
+.no-border{
+  border: none;
+}
+
+/* Change this in order to change the Dropdown symbol */
+li > a:after {
+  content: '';
+}
+li > a:only-child:after {
+  content: '';
+}
+
+.search-container{
+  background-color: #fff;
+  width: 18.5%;
+  padding-left: 0px;
+  input[type=text] {
+    text-align: right;
+    width: 100%;
+    padding-top:8px;
+    padding-bottom:7px;
+    padding-left: 30px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0px;
+    font-family: $default-font;
+    font-size: 13px;
+    color: #fff!important;
+    background-color: $input-background;
+    background-image: url('../images/searchicon.png');
+    background-size: 15px 15px;
+    background-position: 10px 6px;
+    background-repeat: no-repeat;
+
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #fff;
+    font-size: 13px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #fff;
+    font-size: 13px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #fff;
+    font-size: 13px;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #fff;
+    font-size: 13px;
+  }
+}
+.search-container:hover{
+  background-color: #fff;
+}
