@@ -1330,6 +1330,34 @@ body {
   }
 }
 
+
+/* line 38, ../sass/vlpllandingpage.scss */
+.module_manage {
+  padding: 30px;
+  padding-bottom:100px;
+  margin: 0px;
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
+  font-family: "RalewayRegular", sans-serif;
+  background-color: #e6e6e6;
+  
+}
+@media screen and (max-width: 4000px) and (min-width: 1025px) {
+  /* line 38, ../sass/vlpllandingpage.scss */
+  .module_manage {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  /* line 38, ../sass/vlpllandingpage.scss */
+  .module_manage {
+    width: 98%;
+  }
+}
+
+
 /* line 58, ../sass/vlpllandingpage.scss */
 .slide-text {
   background-color: #7c9e56;

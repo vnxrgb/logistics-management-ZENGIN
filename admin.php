@@ -5,14 +5,14 @@ $login = 0;
 $admin = 0;
 if(isset($_SESSION['username'])){
   $login = 1;
-  $username = $_SESSION['username']; 
   if(isset($_SESSION['admin'])){
-    $admin = 1;
+      $admin = 1;
   }
-  $user_details = fetchUserDetails($username);
-  if(!$user_details['email_is_verified']){
-    header('Location: verify_email.php');
+  $username = $_SESSION['username']; 
+  if(!isset($_SESSION['admin'])){
+      header("Location: home.php");
   }
+  $users = getAllUsers();
 }
 ?>
 <!DOCTYPE HTML>
@@ -23,7 +23,8 @@ if(isset($_SESSION['username'])){
   <title>ZLPL|Homepage</title>
   <meta name="e-notes" content="">
   <meta name="author" content="Abc,def,ghi">
-  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link href="https://unpkg.com/ionicons@4.5.9-1/dist/css/ionicons.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./stylesheets/vlpllandingpage.css">
 
 
@@ -56,7 +57,7 @@ if(isset($_SESSION['username'])){
           <div class="company-logo"></div>
       </div>
         <ul>
-            <li class="active"><a href="index.php" >Home</a></li>
+            <li><a href="index.php" >Home</a></li>
             <li><a href="about.php">About Us</a>
 
             <ul>
@@ -94,7 +95,7 @@ if(isset($_SESSION['username'])){
             <li><a href="service.php">Our services</a></li>
             <li><a href="contact.php">contact us</a></li>
             <?php if($admin){ ?>
-            <li><a href="admin.php">Admin Panel</a></li>
+            <li class="active"><a href="admin.php">Admin Panel</a></li>
 <?php }?>
             <?php if(!$login){?>
             <li><a href="login.php">Login</a></li>
@@ -110,108 +111,50 @@ if(isset($_SESSION['username'])){
     </nav>
 
   <div class="main-section ">
-    <div class="module slide-text">
-      <div class="text-container">
-        <div id="slide-1">
-          <h1>We are building India’s largest
-            last mile logistics touch
-            point network.</h1>
-        </div>
-        <div id="slide-2">
-          <h1>We are building India’s largest
-            last mile logistics touch
-            point network.</h1>
-        </div>
-        <div id="slide-3">
-          <h1>We are building India’s largest
-            last mile logistics touch
-            point network.</h1>
-        </div>
-        <div id="slide-4">
-          <h1>We are building India’s largest
-            last mile logistics touch
-            point network.</h1>
-        </div>
-      </div>
-      <div class="circle-container">
-        <i id="circle1-1" class="circle ion-record"></i>
-        <i id="circle1-2" class="circle ion-record"></i>
-        <i id="circle1-3" class="circle ion-record"></i>
-        <i id="circle1-4" class="circle ion-record"></i>
-      </div>
-    </div>
-    <div class="module slide-image">
-      <div class="grey"></div>
-      <div class="image-container">
-        <div id="slide-1">
-          <h1>ENABLING LAST<br>MILE DELIVERY</h1>
-        </div>
-        <div id="slide-2">
-          <h1>ENABLING LAST<br>MILE DELIVERY</h1>
-        </div>
-        <div id="slide-3">
-          <h1>ENABLING LAST<br>MILE DELIVERY</h1>
-        </div>
-        <div id="slide-4">
-          <h1>ENABLING LAST<br>MILE DELIVERY</h1>
-        </div>
-      </div>
-      <div class="circle-container">
-        <i id="circle2-1" class="circle ion-record"></i>
-        <i id="circle2-2" class="circle ion-record"></i>
-        <i id="circle2-3" class="circle ion-record"></i>
-        <i id="circle2-4" class="circle ion-record"></i>
-      </div>
-    </div>
-    <div class="module about-us">
-      <h2>About Us</h2>
-      <p>
-        Enabling you to reach your customers till
-        the last mile. Zengin brings you a
-        wide range of products offered by
-        India’s best express service providers at
-        your doorstep. Select the courier service
-        addressing your specific requirements
-        from a bouquet of services
-      </p>
-    </div>
-    <div class="module service">
-      <h2>Services</h2>
-      <li>Enabling Last mile delivery.</li>
-      <li>Courier booking platform.</li>
-      <li>Reverse pickup solution.</li>
-      <li>Store pickup</li>
-    </div>
-    <div class="module track-shipment">
-        <h2>track shipment</h2>
-        <input type="text" placeholder="TRACKING ID:"></input>
-        <div class="button-input-submit">&#62;</div>
-    </div>
-    <div class="module location" id="location">
-      <h2>locate nearest<br>
-        Zengin kendra
-      </h2>
-      <input type="text" placeholder="Pincode / Areacode"></input>
-    <iframe frameborder="0" style="border:0" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1886.3103866301165!2d72.8197537712091!3d18.99234832782936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8930c0139f%3A0x2a95a91ca0316624!2sZengin+Kendra!5e0!3m2!1sen!2sin!4v1499246702627" >
-      </iframe>
+  <div class="module_manage">
+      <h2>Registered Users</h2>
+      <table style="text-align:center;" class="table table-light">
+  <thead class="thead-dark white-text">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Age</th>
+      <th scope="col">Email Verified Status</th>
+      <th scope="col">Manage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php $i=0; foreach($users as $user){ $i++; ?>
+        <tr>
+      <th scope="row"><?=$i?></th>
+      <td><?=$user['username']?></td>
+      <td><?=$user['email']?></td>
+      <td><?=$user['age']?></td>
+      <td style="">
+      <?php if($user['email_is_verified']){ ?>
+      <i style="color:green;" class="icon ion-md-checkbox">  Verified</i>
+     <?php }else{ ?>
+        <i style="color:red;" class="icon ion-md-close-circle">  Not Verified</i>
+     <?php } ?>
+      </td>
+      <td>
+      <a href="edit_users.php?user_id=<?=$user['username']?>" class="btn btn-success btn-sm">Edit</a>
+      <div onclick="deleteUser('<?=$user['username']?>')" class="btn btn-danger btn-sm">Delete</div>
+
+      </td>
+
+    </tr>
+    <?php } ?>
+  </tbody>
+</table>
+
+
 
     </div>
-    <div class="module feedback">
-      <h2>Feedback</h2>
-      <input type="text" placeholder="Name"></input>
-      <input type="text" placeholder="Email ID"></input>
-      <input type="text" placeholder="Company"></input>
-      <textarea placeholder="Message"></textarea>
-      <div class="button-input-submit">Submit</div>
     </div>
-    <div class="module partners">
-      <h2>Our partners</h2>
-      <p>We value our partners and their needs.</p>
-      <div id="partners-1"></div>
-      <div id="partners-2"></div>
-      <div id="partners-3"></div>
-    </div>
-  </div>
+  
+
 
   <footer>
     <div class="footer-container">
@@ -299,7 +242,28 @@ if(isset($_SESSION['username'])){
     <!--slider plugin-->
     <script src="./javascripts/slider.js"></script>
   <script>
-
+function deleteUser(id){
+  if(confirm("Are you sure?")){
+    $.ajax({
+      url: "util/ajax_delete_users.php",
+      type:"POST",
+      data:{
+        'username':id,
+      },
+      cache: false,
+      success: function(html){
+          if(html=='success'){
+            alert('User deleted!');
+            window.location = ''
+          }else{
+            alert("error!");
+            window.location = ''
+          }
+        }
+      });
+  }
+  
+}
 
 
 </script>
