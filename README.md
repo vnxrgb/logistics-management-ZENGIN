@@ -1,2 +1,2 @@
 # ZenginLogistics
-Freelance Project for Zengin Logistics
+Project for Zengin Logistics
